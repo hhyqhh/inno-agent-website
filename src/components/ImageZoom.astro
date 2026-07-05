@@ -1,0 +1,55 @@
+---
+/**
+ * ImageZoom — 注入 medium-zoom 到 Starlight 文档页
+ * 在 Starlight 的 Head slot 里使用
+ */
+---
+
+<script>
+  import mediumZoom from 'medium-zoom';
+
+  let zoom;
+
+  function initZoom() {
+    // 尊重用户的减少动效偏好：禁用缩放动画
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    zoom = mediumZoom('article img', {
+      margin: 24,
+      background: 'rgba(0, 0, 0, 0.85)',
+      ...(prefersReduced ? { animationDuration: 0 } : {}),
+    });
+  }
+
+  function cleanupZoom() {
+    if (zoom) {
+      zoom.detach();
+      zoom = undefined;
+    }
+  }
+
+  // 首次加载
+  initZoom();
+
+  // 视图切换时重建（Starlight SPA 导航）
+  document.addEventListener('astro:page-load', () => {
+    cleanupZoom();
+    initZoom();
+  });
+
+  // 页面卸载前清理，避免残留事件监听
+  document.addEventListener('astro:before-swap', cleanupZoom);
+</script>
+
+<style is:global>
+  .medium-zoom-overlay {
+    z-index: 999;
+  }
+  .medium-zoom-image--opened {
+    z-index: 1000;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .medium-zoom-image--opened {
+      transition: none !important;
+    }
+  }
+</style>

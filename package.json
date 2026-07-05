@@ -1,0 +1,19 @@
+{
+  "name": "inno-agent-website",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/starlight": "^0.41.2",
+    "@tailwindcss/vite": "^4.1.7",
+    "astro": "^7.0.2",
+    "medium-zoom": "^1.1.0",
+    "sharp": "^0.33.5",
+    "starlight-links-validator": "^0.15.0",
+    "tailwindcss": "^4.1.7"
+  }
+}

@@ -1,0 +1,170 @@
+---
+import Hero from '../components/Hero.astro';
+import ResearchHighlights from '../components/ResearchHighlights.astro';
+import Features from '../components/Features.astro';
+import VideoDemo from '../components/VideoDemo.astro';
+import SkillShowcase from '../components/SkillShowcase.astro';
+import Footer from '../components/Footer.astro';
+import logoDark from '../assets/logo-dark.svg';
+import '../styles/custom.css';
+---
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Inno Agent — 开源、本地优先的个人学习 Agent。通过 L1 学习者画像、L2 知识 Wiki、L3 会话记忆、主动调度和 Practice Lab 构建长期学习闭环。" />
+    <meta name="theme-color" content="#f8fbff" />
+    <meta property="og:title" content="Inno Agent — 你的专属 AI 学习伙伴" />
+    <meta property="og:description" content="分层记忆、开放学习者模型、知识 Wiki、主动复习和 Practice Lab 组成的长期学习 Agent" />
+    <meta property="og:type" content="website" />
+    <title>Inno Agent — 你的专属 AI 学习伙伴</title>
+    <script is:inline>
+      const storedTheme = (() => {
+        try {
+          return localStorage.getItem('starlight-theme');
+        } catch {
+          return null;
+        }
+      })();
+      const prefersLight = matchMedia('(prefers-color-scheme: light)').matches;
+      const theme = storedTheme === 'light' || storedTheme === 'dark'
+        ? storedTheme
+        : prefersLight ? 'light' : 'dark';
+      document.documentElement.dataset.theme = theme;
+      document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme === 'dark' ? '#080c18' : '#f8fbff');
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  </head>
+  <body class="landing-page bg-[#f8fbff] text-slate-950 font-sans antialiased min-h-screen">
+    <!-- Skip to main content -->
+    <a href="#main"
+       class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-[#555aff] focus:shadow-lg focus:ring-2 focus:ring-[#555aff]">
+      跳到主要内容
+    </a>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 border-b border-[#e6ecff] bg-white/95 backdrop-blur-xl">
+      <div class="mx-auto max-w-6xl flex items-center justify-between px-6 h-16">
+        <a href="/" class="brand-link"
+           aria-label="Inno Agent 首页">
+          <img src={logoDark.src} alt="" width="36" height="36" class="brand-logo" />
+          <span>Inno Agent</span>
+        </a>
+
+        <!-- Desktop nav -->
+        <div class="hidden sm:flex items-center gap-8">
+          <a href="/getting-started/introduction/" class="text-sm font-medium text-slate-600 hover:text-[#555aff] transition-colors">文档</a>
+          <a href="#research" class="text-sm font-medium text-slate-600 hover:text-[#555aff] transition-colors">亮点</a>
+          <a href="#demos" class="text-sm font-medium text-slate-600 hover:text-[#555aff] transition-colors">Demo</a>
+          <a href="#skills" class="text-sm font-medium text-slate-600 hover:text-[#555aff] transition-colors">Skills</a>
+          <button type="button"
+                  class="theme-toggle-button"
+                  aria-label="切换深色模式"
+                  aria-pressed="false"
+                  data-theme-toggle>
+            <svg class="theme-icon-sun h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.36-6.36-1.42 1.42M7.05 16.95l-1.41 1.41m12.72 0-1.42-1.41M7.05 7.05 5.64 5.64M12 8a4 4 0 1 1 0 8 4 4 0 0 1 0-8z"/></svg>
+            <svg class="theme-icon-moon hidden h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.8A8.5 8.5 0 1 1 11.2 3 6.5 6.5 0 0 0 21 12.8z"/></svg>
+          </button>
+          <a href="https://github.com/hhyqhh/inno-agent" target="_blank" rel="noopener noreferrer"
+             class="inline-flex items-center gap-1.5 rounded-full border border-[#dfe6ff] bg-white px-3.5 py-1.5 text-sm font-medium text-[#555aff] shadow-sm transition-colors hover:border-[#555aff] hover:bg-[#f5f7ff]">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            GitHub
+          </a>
+        </div>
+
+        <!-- Mobile menu button -->
+        <div class="flex items-center gap-2 sm:hidden">
+          <button type="button"
+                  class="theme-toggle-button"
+                  aria-label="切换深色模式"
+                  aria-pressed="false"
+                  data-theme-toggle>
+            <svg class="theme-icon-sun h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.36-6.36-1.42 1.42M7.05 16.95l-1.41 1.41m12.72 0-1.42-1.41M7.05 7.05 5.64 5.64M12 8a4 4 0 1 1 0 8 4 4 0 0 1 0-8z"/></svg>
+            <svg class="theme-icon-moon hidden h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.8A8.5 8.5 0 1 1 11.2 3 6.5 6.5 0 0 0 21 12.8z"/></svg>
+          </button>
+          <button type="button"
+                  class="inline-flex items-center justify-center rounded-lg border border-[#dfe6ff] bg-white p-2 text-[#555aff] shadow-sm"
+                  aria-label="打开菜单"
+                  aria-expanded="false"
+                  aria-controls="mobile-menu"
+                  data-menu-toggle>
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile menu -->
+      <div id="mobile-menu" class="hidden sm:hidden border-t border-[#e6ecff] bg-white">
+        <div class="px-6 py-4 flex flex-col gap-4">
+          <a href="/getting-started/introduction/" class="text-sm font-medium text-slate-600 hover:text-[#555aff] transition-colors">文档</a>
+          <a href="#research" class="text-sm font-medium text-slate-600 hover:text-[#555aff] transition-colors">亮点</a>
+          <a href="#demos" class="text-sm font-medium text-slate-600 hover:text-[#555aff] transition-colors">Demo</a>
+          <a href="#skills" class="text-sm font-medium text-slate-600 hover:text-[#555aff] transition-colors">Skills</a>
+          <a href="https://github.com/hhyqhh/inno-agent" target="_blank" rel="noopener noreferrer"
+             class="text-sm font-medium text-[#555aff]">GitHub</a>
+        </div>
+      </div>
+    </nav>
+
+    <main id="main" class="pt-16">
+      <Hero />
+      <ResearchHighlights />
+      <Features />
+      <div id="demos">
+        <VideoDemo />
+      </div>
+      <div id="skills">
+        <SkillShowcase />
+      </div>
+    </main>
+
+    <Footer />
+
+    <script>
+      const themeButtons = document.querySelectorAll('[data-theme-toggle]');
+      const themeMeta = document.querySelector('meta[name="theme-color"]');
+      const applyTheme = (theme) => {
+        document.documentElement.dataset.theme = theme;
+        try {
+          localStorage.setItem('starlight-theme', theme);
+        } catch {
+          // Ignore storage failures; the current page can still switch theme.
+        }
+        themeMeta?.setAttribute('content', theme === 'dark' ? '#080c18' : '#f8fbff');
+        themeButtons.forEach((themeButton) => {
+          const isDark = theme === 'dark';
+          themeButton.setAttribute('aria-pressed', String(isDark));
+          themeButton.setAttribute('aria-label', isDark ? '切换浅色模式' : '切换深色模式');
+          themeButton.querySelector('.theme-icon-sun')?.classList.toggle('hidden', !isDark);
+          themeButton.querySelector('.theme-icon-moon')?.classList.toggle('hidden', isDark);
+        });
+      };
+      applyTheme(document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light');
+      themeButtons.forEach((themeButton) => {
+        themeButton.addEventListener('click', () => {
+          applyTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark');
+        });
+      });
+
+      // Mobile menu toggle
+      const btn = document.querySelector('[data-menu-toggle]');
+      const menu = document.getElementById('mobile-menu');
+      btn?.addEventListener('click', () => {
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        menu?.classList.toggle('hidden');
+      });
+      // Close menu when a link is clicked
+      menu?.querySelectorAll('a').forEach((a) => {
+        a.addEventListener('click', () => {
+          menu.classList.add('hidden');
+          btn?.setAttribute('aria-expanded', 'false');
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,57 @@
+---
+/**
+ * HeadWithZoom — 覆盖 Starlight 的 Head 组件
+ * 渲染默认 Head，并追加 medium-zoom 图片放大功能
+ */
+import Default from '@astrojs/starlight/components/Head.astro';
+import ImageZoom from './ImageZoom.astro';
+---
+
+<Default><slot /></Default>
+<ImageZoom />
+<script is:inline>
+  (() => {
+    const syncDocsThemeIcons = () => {
+      const theme = document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
+      const nextTheme = theme === 'dark' ? 'light' : 'dark';
+      const template = document.querySelector('#theme-icons');
+      const nextIcon = template instanceof HTMLTemplateElement
+        ? template.content.querySelector('.' + nextTheme)
+        : null;
+
+      if (!nextIcon) return;
+      document.querySelectorAll('starlight-theme-select svg.label-icon').forEach((oldIcon) => {
+        oldIcon.replaceChildren(...nextIcon.cloneNode(true).childNodes);
+      });
+    };
+
+    const toggleDocsTheme = (picker) => {
+      const select = picker.querySelector('select');
+      if (!(select instanceof HTMLSelectElement)) return;
+
+      const currentTheme = document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
+      select.value = currentTheme === 'dark' ? 'light' : 'dark';
+      select.dispatchEvent(new Event('change', { bubbles: true }));
+      requestAnimationFrame(syncDocsThemeIcons);
+    };
+
+    const bindThemeToggles = () => {
+      document.querySelectorAll('starlight-theme-select').forEach((picker) => {
+        if (picker.dataset.clickToggleBound === 'true') return;
+        picker.dataset.clickToggleBound = 'true';
+        picker.addEventListener('click', (event) => {
+          event.preventDefault();
+          toggleDocsTheme(picker);
+        });
+      });
+      syncDocsThemeIcons();
+    };
+
+    bindThemeToggles();
+    new MutationObserver(syncDocsThemeIcons).observe(document.documentElement, {
+      attributeFilter: ['data-theme'],
+    });
+    document.addEventListener('DOMContentLoaded', bindThemeToggles);
+    document.addEventListener('astro:page-load', bindThemeToggles);
+  })();
+</script>
