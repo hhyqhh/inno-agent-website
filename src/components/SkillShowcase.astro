@@ -1,6 +1,6 @@
 ---
 /**
- * SkillShowcase — 展示 Skill 库精选
+ * SkillShowcase — Skill 库 + 工作区模板精选（3x3 折叠展开）
  */
 const skills = [
   {
@@ -18,6 +18,13 @@ const skills = [
     color: 'border-t-[#555aff]',
   },
   {
+    name: 'Exam2Knowledge',
+    title: '试卷知识提取',
+    description: '试卷照片 → 结构化知识点 + 诊断分析',
+    badge: '教育',
+    color: 'border-t-[#5d8cff]',
+  },
+  {
     name: 'baoyu-comic',
     title: '漫画生成器',
     description: '文本故事 → 多风格分镜漫画',
@@ -25,18 +32,115 @@ const skills = [
     color: 'border-t-[#8b6cff]',
   },
   {
-    name: 'Exam2Knowledge',
-    title: '试卷知识提取',
-    description: '试卷照片 → 结构化知识点 + 诊断分析',
-    badge: '教育',
+    name: 'frontend-slides',
+    title: '动画网页幻灯片',
+    description: '一句话 / PPT → 零依赖单文件动画演示',
+    badge: '创作',
+    color: 'border-t-[#0f9f8f]',
+  },
+  {
+    name: 'homework-grader',
+    title: '作业批改',
+    description: '量规打分 + 证据引用 + 评语生成 + 导出 Excel',
+    badge: '教师',
+    color: 'border-t-[#f59e0b]',
+  },
+  {
+    name: 'storm-research',
+    title: '深度研究报告',
+    description: '多视角提问 + 联网检索 → 带来源的维基式报告',
+    badge: '研究',
+    color: 'border-t-[#475569]',
+  },
+  {
+    name: 'socratic-tutor',
+    title: '苏格拉底式辅导',
+    description: '0-4 级提示阶梯引导，绝不直接给完整答案',
+    badge: '自学',
+    color: 'border-t-[#4ca6ff]',
+  },
+  {
+    name: 'smart-illustrator',
+    title: '智能配图',
+    description: '文章配图 / 批量信息图 / 封面图三种模式',
+    badge: '创作',
+    color: 'border-t-[#8b6cff]',
+  },
+];
+
+const workspaces = [
+  {
+    name: 'ai4math-auto-research',
+    title: 'VeryMath 自动研究',
+    description: '数学问题自动形式化 + 求解 + 验证流水线',
+    badge: '数学',
+    color: 'border-t-[#555aff]',
+  },
+  {
+    name: 'ai4math-computational-mathematics',
+    title: 'VeryMath 计算数学',
+    description: '数值分析、优化算法与科学计算实验环境',
+    badge: '数学',
+    color: 'border-t-[#4ca6ff]',
+  },
+  {
+    name: 'ai4math-lean-agents',
+    title: 'VeryMath Lean Agent',
+    description: 'Lean 4 形式化证明辅助与自动推理',
+    badge: '数学',
+    color: 'border-t-[#8b6cff]',
+  },
+  {
+    name: 'ai4math-paper-reading',
+    title: 'VeryMath 论文精读',
+    description: '数学论文结构化阅读、公式解析与笔记生成',
+    badge: '数学',
+    color: 'border-t-[#0f9f8f]',
+  },
+  {
+    name: 'ai4math-paper-writing',
+    title: 'VeryMath 论文写作',
+    description: '数学论文 LaTeX 写作辅助与审稿意见回复',
+    badge: '数学',
     color: 'border-t-[#5d8cff]',
+  },
+  {
+    name: 'ai4math-optimization',
+    title: 'VeryMath 最优化',
+    description: '凸优化、组合优化与运筹学实验工作台',
+    badge: '数学',
+    color: 'border-t-[#f59e0b]',
+  },
+  {
+    name: 'math-interactive',
+    title: '交互式数学教学',
+    description: '可视化数学概念，支持动态图形与步骤演示',
+    badge: '教学',
+    color: 'border-t-[#475569]',
+  },
+  {
+    name: 'ielts-coach',
+    title: '雅思教练',
+    description: '听说读写全科模拟练习与针对性反馈',
+    badge: '备考',
+    color: 'border-t-[#4ca6ff]',
+  },
+  {
+    name: 'lesson-plan',
+    title: '教案生成',
+    description: '按课标自动生成含评估与活动的完整教案',
+    badge: '教学',
+    color: 'border-t-[#0f9f8f]',
   },
 ];
 ---
 
 <section class="relative bg-white px-6 py-20 sm:py-28">
-  <div class="mx-auto max-w-6xl">
-    <div class="mb-12 max-w-2xl">
+  <div class="tech-dots tech-dots--offset absolute inset-0 pointer-events-none"></div>
+  <div class="mx-auto max-w-6xl relative">
+
+    <!-- Skill 库 -->
+    <div class="fade-in-up mb-12 max-w-2xl">
       <p class="text-sm font-semibold uppercase text-[#555aff]">Skill Library</p>
       <h2 class="mt-3 text-3xl font-bold text-slate-950 sm:text-4xl">
         Skill 库精选
@@ -46,12 +150,14 @@ const skills = [
       </p>
     </div>
 
-    <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-      {skills.map((skill) => (
+    <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3" id="skill-grid">
+      {skills.map((skill, i) => (
         <a href={`https://github.com/Chloris-Blaxk/inno-agent-hub/tree/main/skill-library/${skill.name}`}
            target="_blank"
            rel="noopener noreferrer"
-           class={`group block rounded-lg border border-[#e5ebff] bg-[#fbfdff] p-5 shadow-sm shadow-[#d8e2ff]/30 transition-colors hover:border-[#cfd8ff] focus-visible:outline-2 focus-visible:outline-[#555aff] focus-visible:outline-offset-2 ${skill.color} border-t-4`}>
+           class={`fade-in-up tech-card group block rounded-lg border border-[#e5ebff] bg-[#fbfdff] p-5 shadow-sm focus-visible:outline-2 focus-visible:outline-[#555aff] focus-visible:outline-offset-2 ${skill.color} border-t-4 ${i >= 3 ? 'hidden' : ''}`}
+           data-delay={String((i % 3) + 1)}
+           data-showcase-item>
           <span class="mb-4 inline-block rounded-full border border-[#dfe5ff] bg-white px-2.5 py-1 text-xs font-semibold text-[#555aff]">
             {skill.badge}
           </span>
@@ -59,20 +165,109 @@ const skills = [
           <p class="text-sm leading-6 text-slate-600">{skill.description}</p>
           <div class="mt-4 flex items-center gap-1 text-xs font-semibold text-slate-500 transition-colors group-hover:text-[#555aff]">
             查看详情
-            <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            <svg class="h-3 w-3 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
           </div>
         </a>
       ))}
     </div>
 
-    <div class="mt-12">
+    <div class="mt-6 flex items-center gap-4">
+      <button type="button"
+              class="inline-flex items-center gap-2 rounded-full border border-[#dfe5ff] bg-white px-4 py-2 text-sm font-semibold text-[#555aff] shadow-sm transition-colors hover:border-[#555aff] hover:bg-[#f8faff]"
+              data-toggle-btn="skill-grid"
+              aria-expanded="false">
+        <span data-toggle-text>展开全部</span>
+        <svg class="h-4 w-4 transition-transform" data-toggle-icon fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+      </button>
       <a href="https://github.com/Chloris-Blaxk/inno-agent-hub/tree/main/skill-library"
          target="_blank"
          rel="noopener noreferrer"
-         class="inline-flex items-center gap-2 rounded-full bg-[#555aff] px-5 py-2 text-sm font-semibold text-white shadow-sm shadow-[#555aff]/20 transition-colors hover:bg-[#464cf0] focus-visible:outline-2 focus-visible:outline-[#555aff] focus-visible:outline-offset-2">
+         class="tech-cta inline-flex items-center gap-2 rounded-full bg-[#555aff] px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-[#464cf0] focus-visible:outline-2 focus-visible:outline-[#555aff] focus-visible:outline-offset-2">
         浏览全部 Skill 库
         <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
       </a>
     </div>
+
+    <!-- 工作区模板 -->
+    <div class="fade-in-up mt-20 mb-12 max-w-2xl">
+      <p class="text-sm font-semibold uppercase text-[#0f9f8f]">Workspace Templates</p>
+      <h2 class="mt-3 text-3xl font-bold text-slate-950 sm:text-4xl">
+        工作区精选
+      </h2>
+      <p class="mt-4 text-lg leading-8 text-slate-600">
+        预配置的学习环境，克隆即用。VeryMath 系列专为数学研究与教学打造。
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3" id="workspace-grid">
+      {workspaces.map((ws, i) => (
+        <a href={`https://github.com/Chloris-Blaxk/inno-agent-hub/tree/main/workspace-templates/${ws.name}`}
+           target="_blank"
+           rel="noopener noreferrer"
+           class={`fade-in-up tech-card group block rounded-lg border border-[#e5ebff] bg-[#fbfdff] p-5 shadow-sm focus-visible:outline-2 focus-visible:outline-[#555aff] focus-visible:outline-offset-2 ${ws.color} border-t-4 ${i >= 3 ? 'hidden' : ''}`}
+           data-delay={String((i % 3) + 1)}
+           data-showcase-item>
+          <span class="mb-4 inline-block rounded-full border border-[#dfe5ff] bg-white px-2.5 py-1 text-xs font-semibold text-[#0f9f8f]">
+            {ws.badge}
+          </span>
+          <h3 class="mb-2 text-base font-semibold text-slate-950">{ws.title}</h3>
+          <p class="text-sm leading-6 text-slate-600">{ws.description}</p>
+          <div class="mt-4 flex items-center gap-1 text-xs font-semibold text-slate-500 transition-colors group-hover:text-[#0f9f8f]">
+            查看详情
+            <svg class="h-3 w-3 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <div class="mt-6 flex items-center gap-4">
+      <button type="button"
+              class="inline-flex items-center gap-2 rounded-full border border-[#dfe5ff] bg-white px-4 py-2 text-sm font-semibold text-[#0f9f8f] shadow-sm transition-colors hover:border-[#0f9f8f] hover:bg-[#f0fdfb]"
+              data-toggle-btn="workspace-grid"
+              aria-expanded="false">
+        <span data-toggle-text>展开全部</span>
+        <svg class="h-4 w-4 transition-transform" data-toggle-icon fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+      </button>
+      <a href="https://github.com/Chloris-Blaxk/inno-agent-hub/tree/main/workspace-templates"
+         target="_blank"
+         rel="noopener noreferrer"
+         class="tech-cta inline-flex items-center gap-2 rounded-full bg-[#0f9f8f] px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-[#0d8a7c] focus-visible:outline-2 focus-visible:outline-[#0f9f8f] focus-visible:outline-offset-2">
+        浏览全部工作区
+        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+      </a>
+    </div>
+
   </div>
+
+  <script>
+    document.querySelectorAll('[data-toggle-btn]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const gridId = btn.getAttribute('data-toggle-btn');
+        const grid = document.getElementById(gridId);
+        if (!grid) return;
+
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        const items = grid.querySelectorAll('[data-showcase-item]');
+
+        if (expanded) {
+          // collapse: hide items after first 3
+          items.forEach((item, i) => {
+            if (i >= 3) item.classList.add('hidden');
+          });
+          btn.setAttribute('aria-expanded', 'false');
+          btn.querySelector('[data-toggle-text]').textContent = '展开全部';
+          btn.querySelector('[data-toggle-icon]').style.transform = '';
+        } else {
+          // expand: show all
+          items.forEach((item) => {
+            item.classList.remove('hidden');
+            item.classList.add('is-visible');
+          });
+          btn.setAttribute('aria-expanded', 'true');
+          btn.querySelector('[data-toggle-text]').textContent = '收起';
+          btn.querySelector('[data-toggle-icon]').style.transform = 'rotate(180deg)';
+        }
+      });
+    });
+  </script>
 </section>

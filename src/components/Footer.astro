@@ -4,12 +4,13 @@
  */
 ---
 
-<footer class="border-t border-[#e6ecff] bg-[#f8fbff] px-6 py-12">
-  <div class="mx-auto max-w-6xl">
+<footer class="relative border-t border-[#e6ecff] bg-[#f8fbff] px-6 py-12 overflow-hidden">
+  <div class="tech-dots absolute inset-0 pointer-events-none opacity-50"></div>
+  <div class="mx-auto max-w-6xl relative">
     <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
       <!-- Brand -->
       <div class="lg:col-span-1">
-        <h3 class="mb-2 text-lg font-bold text-slate-950">Inno Agent</h3>
+        <h3 class="mb-2 text-lg font-bold tech-gradient-text">Inno Agent</h3>
         <p class="text-sm leading-7 text-slate-600">
           本地运行、长期记忆的 AI 学习助手
         </p>
@@ -19,9 +20,9 @@
       <div>
         <h4 class="mb-3 text-sm font-semibold text-slate-950">产品</h4>
         <ul class="space-y-2">
-          <li><a href="/getting-started/introduction/" class="text-sm text-slate-600 transition-colors hover:text-[#555aff] focus-visible:outline-2 focus-visible:outline-[#555aff] focus-visible:outline-offset-2">快速开始</a></li>
-          <li><a href="/tutorials/skill-tutorial/" class="text-sm text-slate-600 transition-colors hover:text-[#555aff] focus-visible:outline-2 focus-visible:outline-[#555aff] focus-visible:outline-offset-2">教程</a></li>
-          <li><a href="https://github.com/hhyqhh/inno-agent/releases" target="_blank" rel="noopener noreferrer" class="text-sm text-slate-600 transition-colors hover:text-[#555aff] focus-visible:outline-2 focus-visible:outline-[#555aff] focus-visible:outline-offset-2">下载</a></li>
+          <li><a href="/getting-started/introduction/" class="footer-link text-sm text-slate-600 focus-visible:outline-2 focus-visible:outline-[#555aff] focus-visible:outline-offset-2">快速开始</a></li>
+          <li><a href="/tutorials/skill-tutorial/" class="footer-link text-sm text-slate-600 focus-visible:outline-2 focus-visible:outline-[#555aff] focus-visible:outline-offset-2">教程</a></li>
+          <li><a href="https://github.com/hhyqhh/inno-agent/releases" target="_blank" rel="noopener noreferrer" class="footer-link text-sm text-slate-600 focus-visible:outline-2 focus-visible:outline-[#555aff] focus-visible:outline-offset-2">下载</a></li>
         </ul>
       </div>
 
@@ -29,9 +30,9 @@
       <div>
         <h4 class="mb-3 text-sm font-semibold text-slate-950">资源</h4>
         <ul class="space-y-2">
-          <li><a href="https://github.com/Chloris-Blaxk/inno-agent-hub/tree/main/skill-library" target="_blank" rel="noopener noreferrer" class="text-sm text-slate-600 transition-colors hover:text-[#555aff] focus-visible:outline-2 focus-visible:outline-[#555aff] focus-visible:outline-offset-2">Skill 库</a></li>
-          <li><a href="https://github.com/Chloris-Blaxk/inno-agent-hub/tree/main/how-to" target="_blank" rel="noopener noreferrer" class="text-sm text-slate-600 transition-colors hover:text-[#555aff] focus-visible:outline-2 focus-visible:outline-[#555aff] focus-visible:outline-offset-2">How-to 指南</a></li>
-          <li><a href="/use-cases/" class="text-sm text-slate-600 transition-colors hover:text-[#555aff] focus-visible:outline-2 focus-visible:outline-[#555aff] focus-visible:outline-offset-2">使用案例</a></li>
+          <li><a href="https://github.com/Chloris-Blaxk/inno-agent-hub/tree/main/skill-library" target="_blank" rel="noopener noreferrer" class="footer-link text-sm text-slate-600 focus-visible:outline-2 focus-visible:outline-[#555aff] focus-visible:outline-offset-2">Skill 库</a></li>
+          <li><a href="https://github.com/Chloris-Blaxk/inno-agent-hub/tree/main/how-to" target="_blank" rel="noopener noreferrer" class="footer-link text-sm text-slate-600 focus-visible:outline-2 focus-visible:outline-[#555aff] focus-visible:outline-offset-2">How-to 指南</a></li>
+          <li><a href="/use-cases/" class="footer-link text-sm text-slate-600 focus-visible:outline-2 focus-visible:outline-[#555aff] focus-visible:outline-offset-2">使用案例</a></li>
         </ul>
       </div>
 
@@ -39,9 +40,9 @@
       <div>
         <h4 class="mb-3 text-sm font-semibold text-slate-950">社区</h4>
         <ul class="space-y-2">
-          <li><a href="https://github.com/hhyqhh/inno-agent" target="_blank" rel="noopener noreferrer" class="text-sm text-slate-600 transition-colors hover:text-[#555aff] focus-visible:outline-2 focus-visible:outline-[#555aff] focus-visible:outline-offset-2">GitHub</a></li>
-          <li><a href="https://github.com/hhyqhh/inno-agent/issues" target="_blank" rel="noopener noreferrer" class="text-sm text-slate-600 transition-colors hover:text-[#555aff] focus-visible:outline-2 focus-visible:outline-[#555aff] focus-visible:outline-offset-2">反馈问题</a></li>
-          <li><a href="https://github.com/Chloris-Blaxk/inno-agent-hub" target="_blank" rel="noopener noreferrer" class="text-sm text-slate-600 transition-colors hover:text-[#555aff] focus-visible:outline-2 focus-visible:outline-[#555aff] focus-visible:outline-offset-2">贡献 Skill</a></li>
+          <li><a href="https://github.com/hhyqhh/inno-agent" target="_blank" rel="noopener noreferrer" class="footer-link text-sm text-slate-600 focus-visible:outline-2 focus-visible:outline-[#555aff] focus-visible:outline-offset-2">GitHub</a></li>
+          <li><a href="https://github.com/hhyqhh/inno-agent/issues" target="_blank" rel="noopener noreferrer" class="footer-link text-sm text-slate-600 focus-visible:outline-2 focus-visible:outline-[#555aff] focus-visible:outline-offset-2">反馈问题</a></li>
+          <li><a href="https://github.com/Chloris-Blaxk/inno-agent-hub" target="_blank" rel="noopener noreferrer" class="footer-link text-sm text-slate-600 focus-visible:outline-2 focus-visible:outline-[#555aff] focus-visible:outline-offset-2">贡献 Skill</a></li>
         </ul>
       </div>
     </div>

@@ -39,7 +39,7 @@ import '../styles/custom.css';
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet" />
   </head>
-  <body class="landing-page bg-[#f8fbff] text-slate-950 font-sans antialiased min-h-screen">
+  <body class="landing-page bg-[#f8fbff] text-slate-950 font-sans antialiased min-h-screen page-enter">
     <!-- Skip to main content -->
     <a href="#main"
        class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-[#555aff] focus:shadow-lg focus:ring-2 focus:ring-[#555aff]">
@@ -47,7 +47,7 @@ import '../styles/custom.css';
     </a>
 
     <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-50 border-b border-[#e6ecff] bg-white/95 backdrop-blur-xl">
+    <nav class="tech-nav-glow fixed top-0 left-0 right-0 z-50 border-b border-[#e6ecff] bg-white/95 backdrop-blur-xl">
       <div class="mx-auto max-w-6xl flex items-center justify-between px-6 h-16">
         <a href="/" class="brand-link"
            aria-label="Inno Agent 首页">
@@ -57,10 +57,10 @@ import '../styles/custom.css';
 
         <!-- Desktop nav -->
         <div class="hidden sm:flex items-center gap-8">
-          <a href="/getting-started/introduction/" class="text-sm font-medium text-slate-600 hover:text-[#555aff] transition-colors">文档</a>
-          <a href="#research" class="text-sm font-medium text-slate-600 hover:text-[#555aff] transition-colors">亮点</a>
-          <a href="#demos" class="text-sm font-medium text-slate-600 hover:text-[#555aff] transition-colors">Demo</a>
-          <a href="#skills" class="text-sm font-medium text-slate-600 hover:text-[#555aff] transition-colors">Skills</a>
+          <a href="/getting-started/introduction/" class="nav-link text-sm font-medium text-slate-600 hover:text-[#555aff] transition-colors">文档</a>
+          <a href="#research" class="nav-link text-sm font-medium text-slate-600 hover:text-[#555aff] transition-colors">亮点</a>
+          <a href="#demos" class="nav-link text-sm font-medium text-slate-600 hover:text-[#555aff] transition-colors">Demo</a>
+          <a href="#skills" class="nav-link text-sm font-medium text-slate-600 hover:text-[#555aff] transition-colors">Skills</a>
           <button type="button"
                   class="theme-toggle-button"
                   aria-label="切换深色模式"
@@ -70,7 +70,7 @@ import '../styles/custom.css';
             <svg class="theme-icon-moon hidden h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.8A8.5 8.5 0 1 1 11.2 3 6.5 6.5 0 0 0 21 12.8z"/></svg>
           </button>
           <a href="https://github.com/hhyqhh/inno-agent" target="_blank" rel="noopener noreferrer"
-             class="inline-flex items-center gap-1.5 rounded-full border border-[#dfe6ff] bg-white px-3.5 py-1.5 text-sm font-medium text-[#555aff] shadow-sm transition-colors hover:border-[#555aff] hover:bg-[#f5f7ff]">
+             class="tech-shimmer inline-flex items-center gap-1.5 rounded-full border border-[#dfe6ff] bg-white px-3.5 py-1.5 text-sm font-medium text-[#555aff] shadow-sm transition-colors hover:border-[#555aff] hover:bg-[#f5f7ff]">
             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
             GitHub
           </a>
@@ -165,6 +165,41 @@ import '../styles/custom.css';
           btn?.setAttribute('aria-expanded', 'false');
         });
       });
+
+      // Scroll-triggered fade-in animations
+      const fadeEls = document.querySelectorAll('.fade-in-up');
+      if (fadeEls.length && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.1, rootMargin: '-40px' }
+        );
+        fadeEls.forEach((el) => observer.observe(el));
+      } else {
+        // If reduced motion, show everything immediately
+        fadeEls.forEach((el) => el.classList.add('is-visible'));
+      }
+
+      // Nav scroll effect — add shadow + shrink on scroll
+      const nav = document.querySelector('nav');
+      let lastScroll = 0;
+      const onScroll = () => {
+        const y = window.scrollY;
+        if (y > 20) {
+          nav?.classList.add('nav-scrolled');
+        } else {
+          nav?.classList.remove('nav-scrolled');
+        }
+        lastScroll = y;
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
     </script>
   </body>
 </html>

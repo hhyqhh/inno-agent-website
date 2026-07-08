@@ -4,15 +4,25 @@
  */
 ---
 
-<section class="relative overflow-hidden border-b border-[#e6ecff] bg-white px-6 pt-24 pb-16 sm:pt-28 sm:pb-20 lg:pt-32">
+<section class="tech-noise relative overflow-hidden border-b border-[#e6ecff] bg-white px-6 pt-24 pb-16 sm:pt-28 sm:pb-20 lg:pt-32">
   <div class="aiecnu-hero-waves absolute inset-0"></div>
+  <div class="tech-grid absolute inset-0 pointer-events-none"></div>
+  <div class="tech-orb tech-orb--primary"></div>
+  <div class="tech-orb tech-orb--secondary"></div>
+  <div class="tech-particles">
+    <span class="tech-particle"></span>
+    <span class="tech-particle"></span>
+    <span class="tech-particle"></span>
+    <span class="tech-particle"></span>
+    <span class="tech-particle"></span>
+  </div>
   <div class="absolute inset-0 overflow-hidden">
     <img
       src="/images/docs/shot-01.png"
       alt="Inno Agent 工作区界面预览"
       width="980"
       height="612"
-      class="absolute bottom-[-2rem] right-[-18rem] w-[980px] max-w-none rounded-lg border border-[#e1e8ff] bg-white object-cover shadow-2xl shadow-[#c8d8ff]/60 sm:right-[-12rem] lg:right-[max(-8rem,calc((100vw-72rem)/2-10rem))]"
+      class="hero-screenshot absolute bottom-[-2rem] right-[-18rem] w-[980px] max-w-none rounded-lg border border-[#e1e8ff] bg-white object-cover shadow-2xl sm:right-[-12rem] lg:right-[max(-8rem,calc((100vw-72rem)/2-10rem))]"
       loading="eager"
       fetchpriority="high"
     />
@@ -23,24 +33,24 @@
 
   <div class="relative mx-auto max-w-6xl">
     <div class="max-w-2xl">
-      <div class="inline-flex items-center gap-2 rounded-full border border-[#dfe5ff] bg-white/85 px-4 py-1.5 text-sm font-medium text-[#555aff] shadow-sm">
-        <span class="inline-block h-2 w-2 rounded-full bg-[#555aff]" aria-hidden="true"></span>
+      <div class="fade-in-up tech-badge inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm font-medium text-[#555aff] shadow-sm backdrop-blur-sm">
+        <span class="tech-pulse inline-block h-2 w-2 rounded-full bg-[#555aff]" aria-hidden="true"></span>
         开源个人学习 Agent · 分层记忆 · 本地优先
       </div>
 
-      <h1 class="mt-8 text-4xl font-extrabold leading-[1.05] text-slate-950 sm:text-5xl lg:text-7xl">
-        让 AI 记住学习过程，而不只是回答问题
+      <h1 class="fade-in-up mt-8 text-4xl font-extrabold leading-[1.05] text-slate-950 sm:text-5xl lg:text-7xl" data-delay="1">
+        让 AI 记住学习过程，<span class="tech-gradient-text">而不只是回答问题</span>
       </h1>
 
-      <p class="mt-6 max-w-xl text-lg leading-8 text-slate-600 sm:text-xl">
+      <p class="fade-in-up mt-6 max-w-xl text-lg leading-8 text-slate-600 sm:text-xl" data-delay="2">
         Inno Agent 把学习者画像、知识 Wiki、会话记录、主动复习和 Practice Lab 组织成一个长期学习闭环，让通用模型拥有可持续的教学上下文。
       </p>
 
-      <div class="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+      <div class="fade-in-up mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap" data-delay="3">
         <a href="https://app.inno-agent.cn/login"
            target="_blank"
            rel="noopener noreferrer"
-           class="inline-flex items-center justify-center gap-2 rounded-full bg-[#555aff] px-8 py-3 text-base font-semibold text-white shadow-lg shadow-[#555aff]/25 transition-colors hover:bg-[#464cf0]">
+           class="tech-cta inline-flex items-center justify-center gap-2 rounded-full bg-[#555aff] px-8 py-3 text-base font-semibold text-white shadow-lg shadow-[#555aff]/25 hover:bg-[#464cf0]">
           开始使用
           <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
         </a>
@@ -54,20 +64,21 @@
         </a>
       </div>
 
-      <dl class="mt-12 grid max-w-xl grid-cols-3 gap-4 border-t border-[#dfe6ff] pt-6">
-        <div>
+      <dl class="fade-in-up mt-12 grid max-w-xl grid-cols-3 gap-4 border-t border-[#dfe6ff] pt-6" data-delay="4">
+        <div class="tech-glass rounded-lg p-3">
           <dt class="text-sm text-slate-500">核心架构</dt>
           <dd class="mt-1 text-base font-semibold text-slate-950">L1 / L2 / L3</dd>
         </div>
-        <div>
+        <div class="tech-glass rounded-lg p-3">
           <dt class="text-sm text-slate-500">学习闭环</dt>
           <dd class="mt-1 text-base font-semibold text-slate-950">诊断 + 练习</dd>
         </div>
-        <div>
+        <div class="tech-glass rounded-lg p-3">
           <dt class="text-sm text-slate-500">部署形态</dt>
           <dd class="mt-1 text-base font-semibold text-slate-950">本地 / 私有</dd>
         </div>
       </dl>
     </div>
   </div>
+  <div class="tech-scanline"></div>
 </section>
