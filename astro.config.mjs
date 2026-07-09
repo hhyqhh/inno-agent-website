@@ -9,7 +9,7 @@ const isGithubPages = process.env.GITHUB_PAGES === 'true';
 
 export default defineConfig({
   site: isGithubPages ? 'https://hhyqhh.github.io' : 'https://inno-agent.dev',
-  base: isGithubPages ? '/inno-agent-web' : '/',
+  base: isGithubPages ? '/inno-agent-website' : '/',
   integrations: [
     starlight({
       title: 'Inno Agent',
