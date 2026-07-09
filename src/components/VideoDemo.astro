@@ -2,6 +2,7 @@
 /**
  * VideoDemo section — 场景演示展示区
  */
+import { withBase } from '../utils/base';
 const demos = [
   {
     title: '立体几何解题',
@@ -51,7 +52,7 @@ const demos = [
           从工作区、Skill 到交互式解题，把抽象能力落到真实学习流程里。
         </p>
       </div>
-      <a href="/tutorials/teaching-assistant/" class="fade-in-up inline-flex items-center gap-2 self-start rounded-full border border-[#dfe5ff] bg-white px-4 py-2 text-sm font-semibold text-[#555aff] shadow-sm transition-colors hover:border-[#555aff] hover:bg-[#f8faff] lg:self-auto" data-delay="1">
+      <a href={withBase('/tutorials/teaching-assistant/')} class="fade-in-up inline-flex items-center gap-2 self-start rounded-full border border-[#dfe5ff] bg-white px-4 py-2 text-sm font-semibold text-[#555aff] shadow-sm transition-colors hover:border-[#555aff] hover:bg-[#f8faff] lg:self-auto" data-delay="1">
         教师上手指南
         <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
       </a>
@@ -59,11 +60,11 @@ const demos = [
 
     <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2">
       {demos.map((demo, i) => (
-        <a href={demo.href}
+        <a href={withBase(demo.href)}
            class={`fade-in-up tech-card group block overflow-hidden rounded-lg border border-[#e5ebff] bg-white shadow-sm shadow-[#d8e2ff]/40 focus-visible:outline-2 focus-visible:outline-[#555aff] focus-visible:outline-offset-2`}
            data-delay={String(i + 1)}>
           <div class="relative aspect-video border-b border-[#e5ebff] bg-[#eef4ff]">
-            <video data-demo-video src={demo.video} poster={demo.poster} muted loop playsinline preload="none" class="h-full w-full object-cover" aria-label={demo.title} />
+            <video data-demo-video src={withBase(demo.video)} poster={withBase(demo.poster)} muted loop playsinline preload="none" class="h-full w-full object-cover" aria-label={demo.title} />
             <span class="absolute left-3 top-3 rounded-full bg-white/95 px-2.5 py-1 text-xs font-semibold text-[#555aff] shadow-sm backdrop-blur-sm">
               {demo.label}
             </span>

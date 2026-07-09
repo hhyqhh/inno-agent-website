@@ -2,6 +2,7 @@
 /**
  * NewsBanner — 以 News 形式强调 VeryMath 生态集成
  */
+import { withBase } from '../utils/base';
 ---
 
 <section class="relative overflow-hidden bg-[#fbfdff] px-6 py-12 sm:py-16">
@@ -15,7 +16,7 @@
       <a href="https://verymath.github.io" target="_blank" rel="noopener noreferrer"
          class="relative shrink-0 focus-visible:outline-2 focus-visible:outline-[#555aff] focus-visible:outline-offset-4"
          aria-label="访问 VeryMath 主页">
-        <img src="/images/partners/verymath-logo.png" alt="VeryMath Logo"
+        <img src={withBase('/images/partners/verymath-logo.png')} alt="VeryMath Logo"
              width="88" height="88"
              class="h-16 w-16 rounded-2xl border border-[#e1e8ff] bg-white object-cover shadow-md transition-transform duration-300 group-hover:scale-105 sm:h-20 sm:w-20" />
       </a>

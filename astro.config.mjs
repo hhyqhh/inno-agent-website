@@ -3,8 +3,13 @@ import starlight from '@astrojs/starlight';
 import tailwindcss from '@tailwindcss/vite';
 import starlightLinksValidator from 'starlight-links-validator';
 
+// GitHub Pages 部署时设置 GITHUB_PAGES=true
+// 本地 / 自定义域名部署保持根路径
+const isGithubPages = process.env.GITHUB_PAGES === 'true';
+
 export default defineConfig({
-  site: 'https://inno-agent.dev',
+  site: isGithubPages ? 'https://hhyqhh.github.io' : 'https://inno-agent.dev',
+  base: isGithubPages ? '/inno-agent-web' : '/',
   integrations: [
     starlight({
       title: 'Inno Agent',

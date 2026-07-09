@@ -7,6 +7,7 @@ import VideoDemo from '../components/VideoDemo.astro';
 import SkillShowcase from '../components/SkillShowcase.astro';
 import Footer from '../components/Footer.astro';
 import logoDark from '../assets/logo-dark.svg';
+import { withBase } from '../utils/base';
 import '../styles/custom.css';
 ---
 
@@ -50,7 +51,7 @@ import '../styles/custom.css';
     <!-- Navigation -->
     <nav class="tech-nav-glow fixed top-0 left-0 right-0 z-50 border-b border-[#e6ecff] bg-white/95 backdrop-blur-xl">
       <div class="mx-auto max-w-6xl flex items-center justify-between px-6 h-16">
-        <a href="/" class="brand-link"
+        <a href={withBase('/')} class="brand-link"
            aria-label="Inno Agent 首页">
           <img src={logoDark.src} alt="" width="36" height="36" class="brand-logo" />
           <span>Inno Agent</span>
@@ -58,7 +59,7 @@ import '../styles/custom.css';
 
         <!-- Desktop nav -->
         <div class="hidden sm:flex items-center gap-8">
-          <a href="/getting-started/introduction/" class="nav-link text-sm font-medium text-slate-600 hover:text-[#555aff] transition-colors">文档</a>
+          <a href={withBase('/getting-started/introduction/')} class="nav-link text-sm font-medium text-slate-600 hover:text-[#555aff] transition-colors">文档</a>
           <a href="#research" class="nav-link text-sm font-medium text-slate-600 hover:text-[#555aff] transition-colors">亮点</a>
           <a href="#demos" class="nav-link text-sm font-medium text-slate-600 hover:text-[#555aff] transition-colors">Demo</a>
           <a href="#skills" class="nav-link text-sm font-medium text-slate-600 hover:text-[#555aff] transition-colors">Skills</a>
@@ -101,7 +102,7 @@ import '../styles/custom.css';
       <!-- Mobile menu -->
       <div id="mobile-menu" class="hidden sm:hidden border-t border-[#e6ecff] bg-white">
         <div class="px-6 py-4 flex flex-col gap-4">
-          <a href="/getting-started/introduction/" class="text-sm font-medium text-slate-600 hover:text-[#555aff] transition-colors">文档</a>
+          <a href={withBase('/getting-started/introduction/')} class="text-sm font-medium text-slate-600 hover:text-[#555aff] transition-colors">文档</a>
           <a href="#research" class="text-sm font-medium text-slate-600 hover:text-[#555aff] transition-colors">亮点</a>
           <a href="#demos" class="text-sm font-medium text-slate-600 hover:text-[#555aff] transition-colors">Demo</a>
           <a href="#skills" class="text-sm font-medium text-slate-600 hover:text-[#555aff] transition-colors">Skills</a>

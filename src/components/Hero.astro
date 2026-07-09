@@ -2,6 +2,7 @@
 /**
  * Hero section — 浅色首页首屏
  */
+import { withBase } from '../utils/base';
 ---
 
 <section class="tech-noise relative overflow-hidden border-b border-[#e6ecff] bg-white px-6 pt-24 pb-16 sm:pt-28 sm:pb-20 lg:pt-32">
@@ -18,7 +19,7 @@
   </div>
   <div class="absolute inset-0 overflow-hidden">
     <img
-      src="/images/docs/shot-01.png"
+      src={withBase('/images/docs/shot-01.png')}
       alt="Inno Agent 工作区界面预览"
       width="980"
       height="612"
@@ -54,7 +55,7 @@
           开始使用
           <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
         </a>
-        <a href="/getting-started/introduction/"
+        <a href={withBase('/getting-started/introduction/')}
            class="inline-flex items-center justify-center gap-2 rounded-full border border-[#dfe5ff] bg-white px-8 py-3 text-base font-semibold text-slate-800 shadow-sm transition-colors hover:border-[#555aff] hover:text-[#555aff]">
           使用说明
         </a>

@@ -2,6 +2,7 @@
 /**
  * ResearchHighlights — 系统亮点展示
  */
+import { withBase } from '../utils/base';
 const pillars = [
   {
     label: 'L1',
@@ -109,7 +110,7 @@ const metrics = [
               index % 2 === 1 && 'lg:order-2 lg:border-l lg:border-r-0',
             ]}
           >
-            <video src={item.video} autoplay muted loop playsinline preload="metadata" class="h-full w-full object-cover object-top" aria-label={item.alt} />
+            <video src={withBase(item.video)} autoplay muted loop playsinline preload="metadata" class="h-full w-full object-cover object-top" aria-label={item.alt} />
           </div>
           <div class:list={['flex flex-col justify-center p-6 lg:p-10', index % 2 === 1 && 'lg:order-1']}>
             <p class="mb-4 text-sm font-semibold uppercase text-[#0f9f8f]">{String(index + 1).padStart(2, '0')}</p>
