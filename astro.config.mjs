@@ -2,14 +2,19 @@ import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import tailwindcss from '@tailwindcss/vite';
 import starlightLinksValidator from 'starlight-links-validator';
+import { rehypeBaseImages } from './src/plugins/rehype-base-images.mjs';
 
 // GitHub Pages 部署时设置 GITHUB_PAGES=true
 // 本地 / 自定义域名部署保持根路径
 const isGithubPages = process.env.GITHUB_PAGES === 'true';
+const base = isGithubPages ? '/inno-agent-website' : '/';
 
 export default defineConfig({
   site: isGithubPages ? 'https://hhyqhh.github.io' : 'https://inno-agent.dev',
-  base: isGithubPages ? '/inno-agent-website' : '/',
+  base,
+  markdown: {
+    rehypePlugins: [[rehypeBaseImages, base]],
+  },
   integrations: [
     starlight({
       title: 'Inno Agent',
