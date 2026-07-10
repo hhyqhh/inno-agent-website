@@ -813,28 +813,27 @@ html[data-theme='dark'] .tech-dots {
 /* Animated gradient border for badges */
 .tech-badge {
   position: relative;
-  background: rgba(255, 255, 255, 0.85);
   isolation: isolate;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(85, 90, 255, 0.25);
 }
 
+/* Gradient ring sits BEHIND the opaque badge background, poking out 1px.
+   No mask-composite (the minifier strips it) — just a bordered pseudo. */
 .tech-badge::before {
   content: '';
   position: absolute;
-  inset: 0;
+  inset: -1px;
   z-index: -1;
   border-radius: inherit;
-  padding: 1px;
   background: linear-gradient(135deg, #555aff, #8b6cff, #4ca6ff, #555aff);
   background-size: 300% 300%;
   animation: badge-gradient-rotate 4s ease infinite;
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask-composite: exclude;
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
 }
 
 html[data-theme='dark'] .tech-badge {
-  background: rgba(17, 24, 39, 0.85);
+  background: rgba(17, 24, 39, 0.92);
+  border-color: rgba(109, 116, 255, 0.3);
 }
 
 @keyframes badge-gradient-rotate {
