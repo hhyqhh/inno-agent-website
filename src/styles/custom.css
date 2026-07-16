@@ -97,11 +97,6 @@ button:focus-visible,
   width: var(--aiecnu-brand-logo-size) !important;
   height: var(--aiecnu-brand-logo-size) !important;
   flex: 0 0 var(--aiecnu-brand-logo-size) !important;
-  border: 1px solid var(--aiecnu-brand-logo-border) !important;
-  border-radius: var(--aiecnu-brand-logo-radius) !important;
-  background: var(--aiecnu-brand-logo-bg) !important;
-  box-shadow: var(--aiecnu-brand-logo-shadow) !important;
-  object-fit: cover !important;
 }
 
 /* ===== Unified theme control ===== */
@@ -1113,12 +1108,6 @@ html[data-theme='dark'] .header {
 
 html[data-theme='dark'] .site-title {
   color: #f8fafc !important;
-}
-
-html[data-theme='dark'] .site-title img {
-  background: var(--aiecnu-brand-logo-bg) !important;
-  border-color: var(--aiecnu-brand-logo-border) !important;
-  box-shadow: var(--aiecnu-brand-logo-shadow) !important;
 }
 
 html[data-theme='dark'] site-search button,

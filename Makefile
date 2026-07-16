@@ -1,5 +1,5 @@
 DOCKER ?= docker
-TAG ?= v0.1
+TAG ?= v0.2
 WEB_IMAGE ?= crpi-a4e25wq5oddt3z3b.cn-shanghai.personal.cr.aliyuncs.com/educlaw/inno-agent-website
 
 .PHONY: docker-build docker-push
