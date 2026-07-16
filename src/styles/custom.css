@@ -86,7 +86,13 @@ button:focus-visible,
   text-decoration: none !important;
 }
 
-.brand-logo,
+.brand-logo {
+  width: var(--aiecnu-brand-logo-size) !important;
+  height: var(--aiecnu-brand-logo-size) !important;
+  flex: 0 0 var(--aiecnu-brand-logo-size) !important;
+  display: block !important;
+}
+
 .site-title img {
   width: var(--aiecnu-brand-logo-size) !important;
   height: var(--aiecnu-brand-logo-size) !important;
@@ -96,10 +102,6 @@ button:focus-visible,
   background: var(--aiecnu-brand-logo-bg) !important;
   box-shadow: var(--aiecnu-brand-logo-shadow) !important;
   object-fit: cover !important;
-}
-
-.brand-logo {
-  display: block !important;
 }
 
 /* ===== Unified theme control ===== */
@@ -1263,13 +1265,6 @@ html[data-theme='dark'] .landing-page #mobile-menu {
 
 html[data-theme='dark'] .landing-page #mobile-menu > div {
   background: #080c18;
-}
-
-html[data-theme='dark'] .landing-page nav img {
-  background: var(--aiecnu-brand-logo-bg) !important;
-  border-color: var(--aiecnu-brand-logo-border) !important;
-  border-radius: var(--aiecnu-brand-logo-radius) !important;
-  box-shadow: var(--aiecnu-brand-logo-shadow) !important;
 }
 
 html[data-theme='dark'] .landing-page nav a[aria-label] {
