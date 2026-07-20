@@ -22,6 +22,7 @@ type NewsItem = {
   secondary?: { label: string; href: string; external?: boolean };
 };
 
+// 数组按时间正序维护（新新闻追加到末尾），渲染时倒序，最新在最上
 const items: NewsItem[] = [
   {
     logoSrc: withBase('/images/partners/verymath-logo.png'),
@@ -49,15 +50,37 @@ const items: NewsItem[] = [
       external: true,
     },
   },
+  {
+    iconSvg:
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4h20v12H2z"/><path d="M8 20h8"/><path d="M12 16v4"/><path d="M12 7l1.1 2.2 2.4.4-1.7 1.7.4 2.4L12 12.6l-2.2 1.1.4-2.4-1.7-1.7 2.4-.4z"/></svg>',
+    iconBg: 'linear-gradient(135deg,#f59e0b 0%,#555aff 60%,#4ca6ff 100%)',
+    tag: 'News · 展会动态',
+    title:
+      'InnoAgent 教育智能体将作为 AI 赋能教育实践案例，亮相 <a href="https://mp.weixin.qq.com/s/UenhrLNAUPdp6bssYHoqnQ" target="_blank" rel="noopener noreferrer" class="text-[#555aff] underline decoration-[#c7d0ff] decoration-2 underline-offset-4 transition-colors hover:decoration-[#555aff]">WAIC 2026 世界人工智能大会</a>',
+    description:
+      'InnoAgent 教育智能体入选 WAIC 2026 世界人工智能大会 AI 赋能教育实践案例展示，呈现分层记忆架构如何把学习者画像、知识 Wiki 与主动复习组织成可持续的教学闭环，让通用大模型真正走进长期、个性化的学习场景。',
+    primary: {
+      label: '阅读原文',
+      href: 'https://mp.weixin.qq.com/s/UenhrLNAUPdp6bssYHoqnQ',
+      external: true,
+    },
+  },
 ];
 ---
 
 <section class="relative overflow-hidden bg-[#fbfdff] px-6 py-12 sm:py-16">
   <div class="tech-dots absolute inset-0 pointer-events-none opacity-60"></div>
-  <div class="mx-auto max-w-6xl relative flex flex-col gap-6">
-    {
-      items.map((item) => (
-        <div class="fade-in-up tech-card group relative flex flex-col gap-6 overflow-hidden rounded-2xl border border-[#dbe4ff] bg-white p-6 shadow-sm sm:flex-row sm:items-center sm:gap-8 sm:p-8">
+  <div class="mx-auto max-w-6xl relative">
+    <div
+      data-news-list
+      class:list={[
+        'relative flex flex-col gap-6',
+        items.length > 2 && 'news-scroll overflow-y-auto pr-3',
+      ]}
+    >
+      {
+        [...items].reverse().map((item) => (
+          <div class="fade-in-up tech-card group relative flex shrink-0 flex-col gap-6 overflow-hidden rounded-2xl border border-[#dbe4ff] bg-white p-6 shadow-sm sm:flex-row sm:items-start sm:gap-8 sm:p-8">
           {/* 渐变装饰边 */}
           <div class="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-[#555aff] via-[#4ca6ff] to-[#0f9f8f]" aria-hidden="true" />
 
@@ -67,7 +90,7 @@ const items: NewsItem[] = [
               href={item.primary.href}
               target={item.primary.external ? '_blank' : undefined}
               rel={item.primary.external ? 'noopener noreferrer' : undefined}
-              class="relative shrink-0 focus-visible:outline-2 focus-visible:outline-[#555aff] focus-visible:outline-offset-4"
+              class="relative shrink-0 sm:mt-6 focus-visible:outline-2 focus-visible:outline-[#555aff] focus-visible:outline-offset-4"
               aria-label={item.logoAlt ?? item.primary.label}
             >
               <img
@@ -83,7 +106,7 @@ const items: NewsItem[] = [
               href={item.primary.href}
               target={item.primary.external ? '_blank' : undefined}
               rel={item.primary.external ? 'noopener noreferrer' : undefined}
-              class="relative shrink-0 focus-visible:outline-2 focus-visible:outline-[#555aff] focus-visible:outline-offset-4"
+              class="relative shrink-0 sm:mt-6 focus-visible:outline-2 focus-visible:outline-[#555aff] focus-visible:outline-offset-4"
               aria-label={item.primary.label}
             >
               <span
@@ -133,5 +156,43 @@ const items: NewsItem[] = [
         </div>
       ))
     }
+    </div>
+    {
+      items.length > 2 && (
+        <div
+          data-news-fade
+          class="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#fbfdff] to-transparent transition-opacity duration-300"
+          aria-hidden="true"
+        />
+      )
+    }
   </div>
 </section>
+
+<script>
+  const newsList = document.querySelector('[data-news-list]');
+  if (newsList instanceof HTMLElement && newsList.classList.contains('news-scroll')) {
+    const fade = document.querySelector('[data-news-fade]');
+    const cards = Array.from(newsList.children);
+
+    const updateMaxHeight = () => {
+      if (cards.length <= 2) return;
+      const gap = parseFloat(getComputedStyle(newsList).rowGap) || 0;
+      const first = cards[0] as HTMLElement;
+      const second = cards[1] as HTMLElement;
+      newsList.style.maxHeight = `${first.offsetHeight + second.offsetHeight + gap}px`;
+    };
+
+    const updateFade = () => {
+      if (!(fade instanceof HTMLElement)) return;
+      const atBottom = newsList.scrollTop + newsList.clientHeight >= newsList.scrollHeight - 8;
+      fade.style.opacity = atBottom ? '0' : '1';
+    };
+
+    updateMaxHeight();
+    updateFade();
+    window.addEventListener('load', updateMaxHeight);
+    window.addEventListener('resize', updateMaxHeight);
+    newsList.addEventListener('scroll', updateFade, { passive: true });
+  }
+</script>
