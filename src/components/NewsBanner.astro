@@ -135,3 +135,42 @@ const items: NewsItem[] = [
     }
   </div>
 </section>
+
+<script>
+  /**
+   * 获取每张卡片内 h2 的位置，并让 logo 的左上角对齐 h2 的左上角
+   * （仅 sm 及以上横向布局时生效，移动端纵向布局保持原样）
+   */
+  function alignLogoToHeading() {
+    const cards = document.querySelectorAll<HTMLElement>('.tech-card');
+    cards.forEach((card) => {
+      const logo = card.querySelector<HTMLElement>('a.shrink-0');
+      const h2 = card.querySelector<HTMLElement>('h2');
+      if (!logo || !h2) return;
+
+      // 先清除上次的偏移，避免累积
+      logo.style.transform = '';
+
+      // 仅在 sm 及以上（横向布局）时对齐
+      if (!window.matchMedia('(min-width: 640px)').matches) return;
+
+      const cardRect = card.getBoundingClientRect();
+      const h2Rect = h2.getBoundingClientRect();
+      const logoRect = logo.getBoundingClientRect();
+
+      const offsetY =
+        (h2Rect.top - cardRect.top) - (logoRect.top - cardRect.top);
+      if (offsetY) {
+        logo.style.transform = `translateY(${offsetY}px)`;
+      }
+    });
+  }
+
+  alignLogoToHeading();
+  window.addEventListener('resize', alignLogoToHeading);
+  window.addEventListener('load', alignLogoToHeading);
+  // logo 图片加载后布局可能变化，再次校准
+  document.querySelectorAll('.tech-card img').forEach((img) => {
+    img.addEventListener('load', alignLogoToHeading);
+  });
+</script>
