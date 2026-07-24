@@ -1302,6 +1302,15 @@ html[data-theme='dark'] .landing-page [class*="border-[#cfd8ff]"] {
   border-color: #26324a !important;
 }
 
+/* 深色模式：恢复卡片顶部彩色强调条（被上面的 border-color 简写 !important 覆盖）*/
+html[data-theme='dark'] .landing-page [class*="border-t-[#4ca6ff]"] { border-top-color: #4ca6ff !important; }
+html[data-theme='dark'] .landing-page [class*="border-t-[#555aff]"] { border-top-color: #6d74ff !important; }
+html[data-theme='dark'] .landing-page [class*="border-t-[#5d8cff]"] { border-top-color: #5d8cff !important; }
+html[data-theme='dark'] .landing-page [class*="border-t-[#8b6cff]"] { border-top-color: #8b6cff !important; }
+html[data-theme='dark'] .landing-page [class*="border-t-[#0f9f8f]"] { border-top-color: #0f9f8f !important; }
+html[data-theme='dark'] .landing-page [class*="border-t-[#f59e0b]"] { border-top-color: #f59e0b !important; }
+html[data-theme='dark'] .landing-page [class*="border-t-[#475569]"] { border-top-color: #64748b !important; }
+
 html[data-theme='dark'] .landing-page .text-slate-950,
 html[data-theme='dark'] .landing-page .text-slate-900,
 html[data-theme='dark'] .landing-page .text-slate-800 {
